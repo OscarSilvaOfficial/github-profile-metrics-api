@@ -15,10 +15,19 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
-  it('/ (GET)', () => {
-    return request(app.getHttpServer())
-      .get('/')
-      .expect(200)
-      .expect('Hello World!');
+  describe('/user (GET)', () => {
+    it('Acessa endpoint sem mandar usuário', () => {
+      return request(app.getHttpServer()).get('/user').expect(404);
+    });
+    it('Acessa endpoint mandando usuário que não existe', () => {
+      return request(app.getHttpServer())
+        .get('/user?user=5454d4qawerfq34')
+        .expect(404);
+    });
+    it('Acessa endpoint mandando o meu usuário', () => {
+      return request(app.getHttpServer())
+        .get('/user?user=OscarSilvaOfficial')
+        .expect(200);
+    });
   });
 });

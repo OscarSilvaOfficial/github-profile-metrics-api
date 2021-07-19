@@ -16,10 +16,8 @@ describe('Teste da controller', () => {
 
   it('Pega todas as estatisticas do perfil', async () => {
     const response = await appController.getGithubProfileMetrics({
-      name: 'OscarSilvaOfficial',
-      repo: 'bla',
+      user: 'OscarSilvaOfficial',
     });
-    console.log(response);
-    expect(response);
+    expect(typeof response).toBe('object');
   });
 });
