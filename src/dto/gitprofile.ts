@@ -1,18 +1,11 @@
-import { IGithubRepository } from '../interfaces/app.service.interfaces';
-
 export class GitProfileDTO {
-  private name: string;
-  private data;
+  private user: any;
 
-  constructor(data: IGithubRepository) {
-    this.name = data['name'];
-    this.data = data;
+  constructor(data: any) {
+    this.user = data;
   }
 
   getData() {
-    return {
-      name: this.name,
-      data: this.data,
-    };
+    return this.user;
   }
 }
