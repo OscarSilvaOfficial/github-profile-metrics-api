@@ -18,7 +18,7 @@ export class AppController {
         discription: 'Usuário não existe',
       });
 
-    const userData = new GitProfileDTO(profile).getData();
+    const userData = new GitProfileDTO(profile).getData;
 
     return {
       username: params.user,

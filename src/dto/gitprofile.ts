@@ -5,7 +5,7 @@ export class GitProfileDTO {
     this.user = data;
   }
 
-  getData() {
+  get getData() {
     return this.user;
   }
 }
