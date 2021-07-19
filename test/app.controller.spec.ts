@@ -14,7 +14,12 @@ describe('Teste da controller', () => {
     appController = app.get<AppController>(AppController);
   });
 
-  describe('Pega todas as estatisticas do perfil', () => {
-    expect(appController.getGithubProfileMetrics()).toBe({ name, metrics });
+  it('Pega todas as estatisticas do perfil', async () => {
+    const response = await appController.getGithubProfileMetrics({
+      name: 'OscarSilvaOfficial',
+      repo: 'bla',
+    });
+    console.log(response);
+    expect(response);
   });
 });

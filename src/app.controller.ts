@@ -1,5 +1,6 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { IGithubRepository } from './interfaces/app.service.interfaces';
+import { GitProfileDTO } from './dto/gitprofile';
 import { AppService } from './app.service';
 
 @Controller()
@@ -7,10 +8,13 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get('/')
-  getGithubProfileMetrics(@Param() params: IGithubRepository): any {
+  async getGithubProfileMetrics(@Param() params): Promise<any> {
     const requestParams: IGithubRepository = {
       user: params.user,
     };
-    return this.appService.getGithubProfileMetrics(requestParams);
+    const profile = await this.appService.getGithubProfileMetrics(
+      requestParams,
+    );
+    return new GitProfileDTO(profile).getData();
   }
 }
