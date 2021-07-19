@@ -6,12 +6,8 @@ import fetch from 'node-fetch';
 export class AppService {
   // eslint-disable-next-line prettier/prettier
   async getGithubProfileMetrics({ user }: IGithubRepository): Promise<IGithubRepository> {
-    return fetch(`https://api.github.com/users/${user}`)
-      .then((res) => {
-        return res.json();
-      })
-      .catch((error) => {
-        throw error.json();
-      });
+    return fetch(`https://api.github.com/users/${user}/starred`).then((res) => {
+      return res.json();
+    });
   }
 }
