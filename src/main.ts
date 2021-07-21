@@ -8,5 +8,3 @@ async function bootstrap() {
 }
 
 bootstrap();
-
-module.exports.hander = serverless(bootstrap);
