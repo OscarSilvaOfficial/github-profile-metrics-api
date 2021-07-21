@@ -8,3 +8,12 @@ async function bootstrap() {
 }
 
 bootstrap();
+
+exports.handler = (event, context, callback) => {
+  if (event.httpMethod === 'GET' && event.path === '/') {
+    callback(null, {
+      statusCode: 200,
+      body: 'Rwarw',
+    });
+  }
+};
