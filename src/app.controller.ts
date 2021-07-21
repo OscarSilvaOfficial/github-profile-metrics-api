@@ -6,6 +6,11 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
+  @Get('/')
+  index(): string {
+    return 'Server is on';
+  }
+
   @Get('/user')
   async getGithubProfileMetrics(@Query() params: any): Promise<any> {
     const profile = await this.appService.getGithubProfileMetrics({
