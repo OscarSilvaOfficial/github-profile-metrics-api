@@ -13,21 +13,23 @@ export class AppController {
 
   @Get('/user')
   async getGithubProfileMetrics(@Query() params: any): Promise<any> {
-    const profile = await this.appService.getGithubProfileMetrics({
-      user: params.user,
-    });
+    if ('user' in params) {
+      const profile = await this.appService.getGithubProfileMetrics({
+        user: params.user,
+      });
 
-    if ('message' in profile || params.user === undefined)
+      const userData = new GitProfileDTO(profile).getData;
+      console.info(profile);
+
+      return {
+        username: params.user,
+        metrics: userData,
+      };
+    } else {
       throw new NotFoundException({
         statusCode: 404,
         discription: 'Usuário não existe',
       });
-
-    const userData = new GitProfileDTO(profile).getData;
-
-    return {
-      username: params.user,
-      metrics: userData,
-    };
+    }
   }
 }
