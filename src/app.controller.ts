@@ -14,11 +14,11 @@ export class AppController {
 
   @Get('/user')
   async getGithubProfileMetrics(@Query() params: any): Promise<any> {
-    if ('test' in params) {
+    if (process.env.ENVIROMENT == 'LOCAL') {
       return JSON.parse(FAKE_DATA);
     }
     if ('user' in params) {
-      const profile = await this.appService.getGithubProfileMetrics({
+      const profile = await this.appService.getGithubProfileStatistics({
         user: params.user,
       });
       const userData = new GitProfileDTO(profile).getData;

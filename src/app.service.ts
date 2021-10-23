@@ -4,8 +4,9 @@ import fetch from 'node-fetch';
 
 @Injectable()
 export class AppService {
-  // eslint-disable-next-line prettier/prettier
-  async getGithubProfileMetrics({ user }: IGithubRepository): Promise<IGithubRepository> {
+  async getGithubProfileStatistics({
+    user,
+  }: IGithubRepository): Promise<IGithubRepository> {
     return fetch(`https://api.github.com/users/${user}/events`)
       .then((res) => {
         return res.json();
